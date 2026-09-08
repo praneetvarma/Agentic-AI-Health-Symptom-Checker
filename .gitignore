@@ -1,0 +1,23 @@
+﻿# Environment variables — never commit these
+backend/.env
+.env
+
+# Node modules
+backend/node_modules/
+node_modules/
+
+# Temp test files
+backend/qt.js
+backend/quicktest.js
+backend/diagnose.js
+backend/__test.js
+backend/find_projects.js
+backend/test_api.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

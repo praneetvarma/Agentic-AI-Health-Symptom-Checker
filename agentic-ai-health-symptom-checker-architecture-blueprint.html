@@ -1,0 +1,283 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Architecture Blueprint</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",sans-serif;background:#0d0d1a;color:#e2e8f0;min-height:100vh;padding:24px}
+  h1{text-align:center;font-size:1.1rem;font-weight:800;color:#e879f9;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+  .subtitle{text-align:center;font-size:.72rem;color:#64748b;margin-bottom:24px}
+
+  /* ── Canvas ── */
+  .canvas{position:relative;width:100%;max-width:1100px;margin:0 auto;height:640px}
+
+  /* ── Layer zones ── */
+  .zone{position:absolute;border-radius:12px;border:1.5px dashed}
+  .zone-label{position:absolute;top:-11px;left:12px;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+
+  .zone-user{left:0;top:30px;width:160px;height:580px;border-color:#7c3aed;background:rgba(124,58,237,.06)}
+  .zone-user .zone-label{background:#7c3aed;color:#fff}
+
+  .zone-frontend{left:175px;top:30px;width:185px;height:580px;border-color:#0891b2;background:rgba(8,145,178,.05)}
+  .zone-frontend .zone-label{background:#0891b2;color:#fff}
+
+  .zone-backend{left:375px;top:30px;width:200px;height:580px;border-color:#059669;background:rgba(5,150,105,.05)}
+  .zone-backend .zone-label{background:#059669;color:#fff}
+
+  .zone-ibm{left:590px;top:30px;width:260px;height:580px;border-color:#1d4ed8;background:rgba(29,78,216,.06)}
+  .zone-ibm .zone-label{background:#1d4ed8;color:#fff}
+
+  .zone-output{left:865px;top:30px;width:220px;height:580px;border-color:#b45309;background:rgba(180,83,9,.05)}
+  .zone-output .zone-label{background:#b45309;color:#fff}
+
+  /* ── Component boxes ── */
+  .box{position:absolute;border-radius:10px;border:1.5px solid;padding:8px 10px;text-align:center;cursor:default}
+  .box-title{font-size:.72rem;font-weight:800;margin-bottom:3px;line-height:1.2}
+  .box-sub{font-size:.62rem;color:#94a3b8;line-height:1.3}
+  .box-icon{font-size:1.3rem;margin-bottom:4px;display:block}
+
+  /* colours */
+  .b-user  {background:rgba(124,58,237,.18);border-color:#7c3aed;color:#c4b5fd}
+  .b-fe    {background:rgba(8,145,178,.18); border-color:#0891b2;color:#67e8f9}
+  .b-be    {background:rgba(5,150,105,.18); border-color:#059669;color:#6ee7b7}
+  .b-ibm   {background:rgba(29,78,216,.2);  border-color:#3b82f6;color:#93c5fd}
+  .b-ibm2  {background:rgba(168,85,247,.18);border-color:#a855f7;color:#d8b4fe}
+  .b-out   {background:rgba(245,158,11,.15);border-color:#f59e0b;color:#fcd34d}
+  .b-red   {background:rgba(239,68,68,.15); border-color:#ef4444;color:#fca5a5}
+  .b-green {background:rgba(52,211,153,.15);border-color:#34d399;color:#6ee7b7}
+
+  /* ── SVG arrows overlay ── */
+  .arrows{position:absolute;inset:0;pointer-events:none}
+
+  /* ── Legend ── */
+  .legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:16px}
+  .leg-item{display:flex;align-items:center;gap:6px;font-size:.68rem;color:#94a3b8}
+  .leg-line{width:28px;height:2px}
+
+  /* ── Footer ── */
+  .footer{text-align:center;margin-top:20px;font-size:.7rem;color:#475569;border-top:1px solid #1e293b;padding-top:14px}
+</style>
+</head>
+<body>
+
+<h1>🏥 Agentic AI Health Symptom Checker</h1>
+<p class="subtitle">System Architecture Blueprint — IBM Granite 4 · watsonx.ai · Node.js · Vanilla JS</p>
+
+<div class="canvas">
+
+  
+  <div class="zone zone-user"><span class="zone-label">User Layer</span></div>
+  <div class="zone zone-frontend"><span class="zone-label">Frontend</span></div>
+  <div class="zone zone-backend"><span class="zone-label">Backend API</span></div>
+  <div class="zone zone-ibm"><span class="zone-label">IBM Cloud / watsonx.ai</span></div>
+  <div class="zone zone-output"><span class="zone-label">Output Layer</span></div>
+
+  
+  <div class="box b-user" style="left:10px;top:80px;width:140px">
+    <span class="box-icon">🧑‍💻</span>
+    <div class="box-title">Patient / User</div>
+    <div class="box-sub">Describes symptoms in natural language</div>
+  </div>
+
+  <div class="box b-user" style="left:10px;top:240px;width:140px">
+    <span class="box-icon">📱</span>
+    <div class="box-title">Browser</div>
+    <div class="box-sub">Chrome / Firefox / Edge — opens http://localhost:3001</div>
+  </div>
+
+  <div class="box b-user" style="left:10px;top:400px;width:140px">
+    <span class="box-icon">🌍</span>
+    <div class="box-title">Multi-language</div>
+    <div class="box-sub">EN · ES · FR · DE · HI · AR · PT · ZH · JA</div>
+  </div>
+
+  
+  <div class="box b-fe" style="left:185px;top:60px;width:165px">
+    <span class="box-icon">🖥️</span>
+    <div class="box-title">index.html</div>
+    <div class="box-sub">Single Page App — HTML5 · CSS3 · Vanilla JS</div>
+  </div>
+
+  <div class="box b-fe" style="left:185px;top:195px;width:165px">
+    <span class="box-icon">📋</span>
+    <div class="box-title">Symptom Form</div>
+    <div class="box-sub">14 chips · Duration · Severity slider · Onset · 10 checkboxes · Age · Gender · Medications · Allergies</div>
+  </div>
+
+  <div class="box b-red" style="left:185px;top:385px;width:165px">
+    <span class="box-icon">🚨</span>
+    <div class="box-title">Emergency Triage</div>
+    <div class="box-sub">22 keyword check — instant, no AI call needed</div>
+  </div>
+
+  <div class="box b-fe" style="left:185px;top:500px;width:165px">
+    <span class="box-icon">📄</span>
+    <div class="box-title">Markdown Renderer</div>
+    <div class="box-sub">Parses AI output → styled HTML sections</div>
+  </div>
+
+  
+  <div class="box b-be" style="left:385px;top:60px;width:175px">
+    <span class="box-icon">⚙️</span>
+    <div class="box-title">server.js</div>
+    <div class="box-sub">Node.js · Express · port 3001 · serves frontend + API</div>
+  </div>
+
+  <div class="box b-be" style="left:385px;top:190px;width:175px">
+    <span class="box-icon">🔑</span>
+    <div class="box-title">IAM Token Cache</div>
+    <div class="box-sub">API key → Bearer token · cached 55 min · auto-refresh</div>
+  </div>
+
+  <div class="box b-be" style="left:385px;top:320px;width:175px">
+    <span class="box-icon">📝</span>
+    <div class="box-title">Prompt Builder</div>
+    <div class="box-sub">&lt;|system|&gt; WHO/CDC guidelines + &lt;|user|&gt; patient context → Granite format</div>
+  </div>
+
+  <div class="box b-be" style="left:385px;top:460px;width:175px">
+    <span class="box-icon">🛡️</span>
+    <div class="box-title">Error Handler</div>
+    <div class="box-sub">401 bad key · 403 no WML · 429 rate limit · 500 failure</div>
+  </div>
+
+  
+  <div class="box b-ibm" style="left:600px;top:55px;width:225px">
+    <span class="box-icon">🔒</span>
+    <div class="box-title">IBM IAM</div>
+    <div class="box-sub">iam.cloud.ibm.com/identity/token · API key exchange · OAuth 2.0</div>
+  </div>
+
+  <div class="box b-ibm2" style="left:600px;top:200px;width:225px">
+    <span class="box-icon">🤖</span>
+    <div class="box-title">IBM Granite 4</div>
+    <div class="box-sub">ibm/granite-4-h-small · us-south.ml.cloud.ibm.com · greedy decoding · 1024 max tokens</div>
+  </div>
+
+  <div class="box b-ibm" style="left:600px;top:370px;width:225px">
+    <span class="box-icon">🗂️</span>
+    <div class="box-title">watsonx.ai Project</div>
+    <div class="box-sub">praneet's sandbox · 9efd52f7 · WML instance linked</div>
+  </div>
+
+  <div class="box b-ibm" style="left:600px;top:500px;width:225px">
+    <span class="box-icon">🧠</span>
+    <div class="box-title">Training Knowledge</div>
+    <div class="box-sub">WHO guidelines · CDC recommendations · Medical literature · Evidence-based</div>
+  </div>
+
+  
+  <div class="box b-green" style="left:875px;top:60px;width:195px">
+    <span class="box-icon">🔬</span>
+    <div class="box-title">Possible Conditions</div>
+    <div class="box-sub">2–4 probable diagnoses with explanations</div>
+  </div>
+
+  <div class="box b-out" style="left:875px;top:175px;width:195px">
+    <span class="box-icon">🚦</span>
+    <div class="box-title">Urgency Level</div>
+    <div class="box-sub">🟢 Low · 🟡 Moderate · 🔴 High emergency</div>
+  </div>
+
+  <div class="box b-green" style="left:875px;top:285px;width:195px">
+    <span class="box-icon">🌿</span>
+    <div class="box-title">Home Remedies</div>
+    <div class="box-sub">Safe self-care steps · OTC guidance</div>
+  </div>
+
+  <div class="box b-out" style="left:875px;top:390px;width:195px">
+    <span class="box-icon">🩻</span>
+    <div class="box-title">When to See Doctor</div>
+    <div class="box-sub">Red-flag indicators · referral triggers</div>
+  </div>
+
+  <div class="box b-green" style="left:875px;top:495px;width:195px">
+    <span class="box-icon">🛡️</span>
+    <div class="box-title">Preventive Tips</div>
+    <div class="box-sub">Lifestyle · hygiene · vaccination advice</div>
+  </div>
+
+  
+  <svg class="arrows" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="ah">
+        <path d="M0,0 L0,6 L8,3 z" fill="#64748b"></path>
+      </marker>
+      <marker id="ah-green">
+        <path d="M0,0 L0,6 L8,3 z" fill="#34d399"></path>
+      </marker>
+      <marker id="ah-blue">
+        <path d="M0,0 L0,6 L8,3 z" fill="#60a5fa"></path>
+      </marker>
+      <marker id="ah-red">
+        <path d="M0,0 L0,6 L8,3 z" fill="#f87171"></path>
+      </marker>
+      <marker id="ah-purple">
+        <path d="M0,0 L0,6 L8,3 z" fill="#c084fc"></path>
+      </marker>
+      <marker id="ah-gold">
+        <path d="M0,0 L0,6 L8,3 z" fill="#fbbf24"></path>
+      </marker>
+    </defs>
+
+    
+    <line x1="80" y1="155" x2="80" y2="240" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#ah)"></line>
+    
+    <line x1="150" y1="260" x2="185" y2="200" stroke="#0891b2" stroke-width="1.5" marker-end="url(#ah-blue)"></line>
+    
+    <line x1="267" y1="310" x2="267" y2="385" stroke="#ef4444" stroke-width="1.5" marker-end="url(#ah-red)"></line>
+    
+    <line x1="350" y1="260" x2="385" y2="260" stroke="#059669" stroke-width="2" marker-end="url(#ah-green)"></line>
+    
+    <line x1="560" y1="210" x2="600" y2="100" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#ah-blue)"></line>
+    
+    <line x1="560" y1="350" x2="600" y2="290" stroke="#c084fc" stroke-width="2" marker-end="url(#ah-purple)"></line>
+    
+    <line x1="712" y1="140" x2="712" y2="200" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#ah-blue)"></line>
+    
+    <line x1="712" y1="320" x2="712" y2="370" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#ah-blue)"></line>
+    
+    <line x1="825" y1="265" x2="875" y2="100" stroke="#34d399" stroke-width="2" marker-end="url(#ah-green)"></line>
+    <line x1="825" y1="275" x2="875" y2="205" stroke="#fbbf24" stroke-width="2" marker-end="url(#ah-gold)"></line>
+    <line x1="825" y1="285" x2="875" y2="310" stroke="#34d399" stroke-width="2" marker-end="url(#ah-green)"></line>
+    <line x1="825" y1="295" x2="875" y2="415" stroke="#fbbf24" stroke-width="2" marker-end="url(#ah-gold)"></line>
+    <line x1="825" y1="305" x2="875" y2="520" stroke="#34d399" stroke-width="2" marker-end="url(#ah-green)"></line>
+    
+    <path d="M875 155 Q840 130 560 120 Q400 110 350 130" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#ah)"></path>
+    
+    <path d="M350 410 Q440 410 875 140" stroke="#f87171" stroke-width="1.5" fill="none" marker-end="url(#ah-red)"></path>
+    
+    <line x1="712" y1="500" x2="712" y2="400" stroke="#818cf8" stroke-width="1.5" marker-end="url(#ah)"></line>
+
+    
+    <text x="352" y="248" font-size="9" fill="#6ee7b7" font-weight="600">POST /api/analyze</text>
+    <text x="556" y="168" font-size="9" fill="#93c5fd" font-weight="600">API Key → Token</text>
+    <text x="560" y="320" font-size="9" fill="#d8b4fe" font-weight="600">Granite prompt</text>
+    <text x="830" y="225" font-size="9" fill="#34d399" font-weight="600">AI response</text>
+    <text x="580" y="118" font-size="9" fill="#94a3b8">JSON result</text>
+    <text x="195" y="378" font-size="9" fill="#f87171" font-weight="600">22 keywords</text>
+  </svg>
+
+</div>
+
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-line" style="background:#7c3aed"></div> User interaction</div>
+  <div class="leg-item"><div class="leg-line" style="background:#0891b2"></div> Frontend flow</div>
+  <div class="leg-item"><div class="leg-line" style="background:#059669"></div> API request</div>
+  <div class="leg-item"><div class="leg-line" style="background:#3b82f6"></div> IBM auth</div>
+  <div class="leg-item"><div class="leg-line" style="background:#c084fc"></div> Granite inference</div>
+  <div class="leg-item"><div class="leg-line" style="background:#34d399"></div> AI response</div>
+  <div class="leg-item"><div class="leg-line" style="background:#f87171"></div> Emergency triage</div>
+  <div class="leg-item"><div class="leg-line" style="background:#94a3b8;border-top:2px dashed #94a3b8;height:0"></div> Return path</div>
+</div>
+
+<div class="footer">
+  Agentic AI Health Symptom Checker · IBM Granite 4 (ibm/granite-4-h-small) · watsonx.ai us-south · Node.js Express Backend · Vanilla JS Frontend
+  <br /><span style="margin-top:6px;display:block">Made with IBM Bob</span>
+</div>
+
+</body>
+</html>
